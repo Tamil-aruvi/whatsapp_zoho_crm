@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# VS Code settings
+.vscode/
+
+# macOS / Windows / Linux system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python v
+
+# Local project secrets or configs
+send_whatsapp_message.py
+ollama_utils.py
+test_whatsapp_bot.py
+test_zoho_leads.py
+test_zoho_lead.py
+zoho_leads.py
+zoho_auth.py
