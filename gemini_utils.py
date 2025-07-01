@@ -1,11 +1,20 @@
-import google.generativeai as genai
+    # gemini_utils.py
 
-def generate_response(prompt):
+import google.generativeai as genai
+import os
+
+# ✅ Configure Gemini API with your API key (can be set directly or via environment variable)
+#GOOGLE_API_KEY = "Key"  # Replace with os.getenv("GOOGLE_API_KEY") for production
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+# ✅ Initialize Gemini model (you can switch to gemini-pro or others if needed)
+model = genai.GenerativeModel("models/gemini-1.5-flash")
+
+# ✅ Function to generate reply with optional context
+def generate_with_gemini(prompt: str, context: str = "") -> str:
+    full_prompt = f"{context}\n\n{prompt}" if context else prompt
     try:
-        genai.configure(api_key="AIzaSyCJwGRlV4V-D8bWp79hy9u4T2r4HdazQgk")
-        model = genai.GenerativeModel('gemini-2.0-flash')
-        response = model.generate_content(prompt)
+        response = model.generate_content(full_prompt)
         return response.text
     except Exception as e:
-        print("Gemini Error:", e)
-        return None
+        return f"[Gemini Error]: {str(e)}"
